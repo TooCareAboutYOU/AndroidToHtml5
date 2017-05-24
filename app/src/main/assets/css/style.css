@@ -1,0 +1,72 @@
+*{
+	-webkit-box-sizing:border-box;  /* 设置盒模型为内减模式 */
+	   -moz-box-sizing:border-box;
+			box-sizing:border-box;
+}
+html{
+	font-family:"microsoft yahei",Helvetica,Arial,sans-serif;
+	font-weight:normal;
+	font-style:normal;
+}
+body,p,form,input,button,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6{margin:0;padding:0;border: 0;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+input,textarea,select{outline:none; -webkit-appearance:none;} /* 清除IOS下按钮原生样式 */
+textarea{resize:none;} /* 不允许调整元素宽高 */
+table{border-collapse:collapse;}  /* 为表格设置合并边框模型 */
+input,select,textarea{outline:none;border:none;background:none;} /* 清除默认样式 */
+a{text-decoration:none;outline:none;cursor:pointer;color: #232323;}
+em,i,b{font-style:normal;}
+li,ol{list-style:none;}
+body{width:100%;max-width: 640px;margin: 0 auto;background: #f5f5f5;}
+img{border:none;width:100%;vertical-align:top;}
+.clearfix{*zoom:1;}.clearfix:after{display:block;overflow:hidden;clear:both;height:0;visibility:hidden;content:".";}
+.fl{float: left;}
+.fr{float: right;}
+/* 修改plachholder颜色 */
+input::-webkit-input-placeholder { /* WebKit browsers */
+  color: #8f8f8f;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: #8f8f8f;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #8f8f8f;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color: #8f8f8f;
+}
+body{font-family: "微软雅黑";}
+/*.content{padding: 0 0.14rem;}*/
+.content{position:relative;width:100%;height:100%;}
+.content .video{width:100%;border: none;font-size:0;}
+video{
+	width:100%;
+	/*background:transparent url('../images/dd.png') 50% 50% no-repeat;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;*/
+}
+.content .top-text{font-size:0.24rem;color:#fff;position:absolute;top:6.5rem;width:100%;text-align:center;}
+.title{text-indent:-0.25em;position:absolute;top:13.5rem;left:2.1rem;width:37%;height:1.2rem;line-height:0.4rem;background:url(../images/title.png) no-repeat;background-size:100%;font-size: 0.2rem; text-align: center;line-height: 0.4rem; color: #f00;}
+.content .rule .rule-text{width:100%;padding: 0rem 0.3rem;color:#fff;font-size:0.2rem;position:absolute;top:14.5rem;}
+.lucky .title{position:absolute;top:24rem;font-size:0.2rem;}
+/*九宫格*/
+#id{background:url(../images/lottery.png) no-repeat;width:86%;height:5.6rem;position:absolute;background-size:100%;top:25rem;left:0.45rem;}
+#lottery .on{border:0.02rem solid #ff0;border-radius: 0.05rem;}
+#lottery{position: absolute;width:87%; top: 0.5rem;left: 0.5rem;font-size:0rem;}
+ul{list-style:none;padding:0;margin:0;width:4.65rem;height:4.765rem;}
+#lottery .btn,ul,li{width:30.5%;display:inline-block;margin-bottom:0.06rem;}
+
+/*中奖提示的弹框*/
+.zhezhao{position:fixed;display:none;background-color:rgba(8,8,8,0.7);z-index:2;top:0;left:0;width:100rem;height:100rem;}
+.show{top:3.5rem;left:0.7rem;position:absolute;width:5rem;height:4rem;background: url("../images/wintips.png") no-repeat;background-size: 100%;z-index:2;border-radius:0.05rem;}
+.close{position: absolute;width: 3rem;height: 0.6rem;line-height: 0.6rem;text-align: center;font-size: 0.24rem;color: #fff;top: 3rem;left: 1rem;border-radius:0.2rem;background: #FF2944}
+.zhezhao  .text{font-size: 0.2rem;position: relative;top:1.48rem;left: 2.2rem;}
+.zhezhao .text-content{font-size:0.2rem;position:relative;top:1.95rem;padding:0 0.25rem;}
+.media{position:relative;}
+.media .logo{width:5.8rem;position:absolute;height:2rem;top:0.6rem;left:0.4rem;color:#fff;font-size:0.12rem;}
+.media .logo li{width:19%;}
+.footer{font-size:0;}
+
+

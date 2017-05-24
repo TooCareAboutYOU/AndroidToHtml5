@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>验证手机号</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="dist/css/bootstrap.min.css">
+	<style>
+		/*body{background:#fff;}*/
+		img{width:100%;}
+		.header{width:100%;height:40px;background-color:#c2bbb9;line-height:40px;text-align:center;color:#fff;}
+		.historyback{margin-left:10px;width:12px;height:52px;}
+		.testTittlediv{margin-top:30px;width:100%;height:200px;}
+		/*login部分*/
+		.login{width:80%;left:10%;position:absolute;top:73px;text-align:center;}
+		.phoneinput{border-bottom:1px solid #E5E5E5;padding-bottom:10px;margin-bottom:20px;}
+		.phoneinput input{height:30px;line-height:30px;border:none;width:50%;outline:none;}
+		.phonepicture,.auth-key{display:block;padding-top:5px;}
+		.phonepicture{width:14px;height:20px}
+		.auth-key{width:17px;height:20px;}
+		.next-step{height:50px;width:80%;position:absolute;top:280px;left:10%;}
+		.header{width:100%;height:40px;background:#F4F4F4;line-height:40px;text-align:center;}
+		.historyback{margin-left:10px;width:12px;height:22px;}
+		.submit{background:#FF6633;color:#fff;width:100%;height:48px;font-size:24px;line-height:48px;text-align:center;border-radius:26px;}
+	</style>
+<!-- 	<script src="dist/js/theHeader.js"></script> -->
+
+</head>
+<body>
+	<nav class="header" style="background:#c2bbb9 ">
+		<div onclick="history.go(-1)" class="historyback pull-left"><img src="img/historyback1.png" alt=""></div><b id="MyTittle">验证手机号</b>
+	</nav>
+	<div class="testTittlediv">
+		<h3  id="testTittle">来自java：</h3>
+	</div>
+
+	<div class="container-fluid" style="position:relative;">
+		<div class="login">
+			<div class="phoneinput">
+				<div class="phonepicture pull-left"><img src="img/phonepicture.png" alt=""></div>
+				<input type="text" id="uPhone" placeholder="请输入手机号" maxlength="11" onkeyup="value=value.replace(/[^\d]/g,'')" >
+				<div class="pull-right">
+					<input type="button" style="width:88px;" id="getPassword" value="获取验证码"/>
+				</div>
+			</div>
+			<div class="phoneinput">
+				<span class="auth-key pull-left"><img src="img/auth-key.png" alt=""></span><input type="text" id="inPassword" placeholder="请输入验证码"><div style="width:86px;padding:0;height:20px;float:right"></div>
+			</div>
+		</div>
+		<div class="next-step" id="outPage">
+			<div class="submit" onclick="window.android.ShowToast()">确认</div>
+		</div>
+	</div>
+	<script src="dist/js/jquery.min.js"></script>
+	<script src="dist/js/bootstrap.min.js"></script>
+	<script>
+
+		function JavaCallJS(msg){
+			document.getElementById("testTittle").innerHTML=("来自java："+msg);
+		}
+
+		var wait=30;
+		function time(o) {
+			if (wait == 0) {
+				o.removeAttribute("disabled");
+				o.value="获取验证码";
+				wait = 30;
+			} else {
+				o.setAttribute("disabled", true);
+				o.value="重新发送(" + wait + ")";
+				wait--;
+				setTimeout(function() {
+					time(o)
+				},
+				1000)
+			}
+		}
+		function PassCode(name){
+			var url='http://app.shineup.com.cn/goldenline-portal-clt/sendDynPwdH5.html?uname=';
+			var uname=name;
+			url=url+uname;
+			if(uname=='' || uname.length!=11){
+				alert('手机号错误');
+			}else if(uname.length==11){
+				$.ajax({
+					url:url,
+					type:"post",
+					dataType:'json',
+					success:function (msg) {
+						alert(msg.errorMessage);
+					},
+					error:function () {
+						alert('网络请求失败');
+					}
+				});
+			}
+		}
+		$('#getPassword').click(function () {
+			if($('#uPhone').val().length ==11){
+				PassCode($('#uPhone').val());
+				time(this);
+			}else{
+				alert('手机号不规范');
+			}
+		});
+		function step() {
+			var mobile= $("#uPhone").val();
+			var passWord = $("#inPassword").val();
+			if(mobile!='' && passWord != ''){
+				url ='http://app.shineup.com.cn/goldenline-portal-clt/registerH5.html?uname='+mobile+'&regType=2&dynPwd='+passWord+'&nick='+mobile;
+				$.ajax({
+					url:url,
+					type:"post",
+					dataType:'json',
+					success:function (data) {
+						// alert(msg.errorMessage);
+						window.location.href='http://app.shineup.com.cn/goldenline/html/anxiaoxiao-test/1123Lottery/index.html?uid='+data.uid;
+					},
+					error:function () {
+						alert('网络请求失败');
+					}
+				});
+			}else {
+				alert('是不是没填完呀？');
+			}
+
+
+		}
+		$('#outPage').click(function () {
+			step()
+		})
+
+	</script>
+</body>
+</html>
